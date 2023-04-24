@@ -8,6 +8,7 @@ import {
   Patch,
   UsePipes,
   ValidationPipe,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { BoardsService } from './boards.service';
 import { BoardStatus } from './board.status.enum';
@@ -45,6 +46,11 @@ export class BoardsController {
   //   return this.boardsService.getBoardById(id);
   // }
 
+  // eslint-disable-next-line prettier/prettier
+  @Delete('/:id')
+  deleteBoard(@Param('id', ParseIntPipe) id): Promise<void> {
+    return this.boardsService.deleteBoard(id);
+  }
   // @Delete('/:id')
   // deleteBoard(@Param('id') id: string): void {
   //   this.boardsService.deleteBoard(id);
